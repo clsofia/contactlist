@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		currentAgenda: "sophia",
 
 		contacts: [],
-
+			
 		actions: {
 
 			//get data from my agenda
@@ -64,7 +64,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("resp addContact", resp)
 				if (resp.statusText=== "OK") setStore({ contactAdded: true })
 			},
-			deleteUser: () => {},
+			deleteUser: (id) => {
+
+				if (id > -1) {
+					const opt = {
+						method: "DELETE",
+					}
+					const resp = fetch("https://playground.4geeks.com/apis/fake/contact/" + id, opt)
+					resp.then(resposta => {
+						console.log(resposta.statusText)
+						if(resposta.statusText === "CREATED") {
+							const filterData = getStore().contacts.filter(item => item.id !== id);
+							setStore({ contacts: filterData })
+						}
+					})
+					
+				}
+				
+			},
+					
+				
+			
+		
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

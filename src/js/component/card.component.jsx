@@ -1,9 +1,12 @@
-import React from "react";
-import{useNavigate} from "react-router";
+import React, { useContext } from "react";
+import{useNavigate, useParams} from "react-router";
+import { Context } from "../store/appContext";
 
 
 
 export const CardComponent = props => {
+
+const{actions} = useContext(Context)
 
 const navigate = useNavigate()
 
@@ -18,7 +21,7 @@ return(
 <p>{props.el.phone}</p>
 <p>{props.el.email}</p>
 <button className="btn btn-primary" onClick={e=>navigate("/edit/" + props.el.id)}>Edit</button>
-<button className="btn btn-danger" onClick={e => actions.deleteUser(props.el.id)}>X</button>
+<button className="btn btn-danger" onClick={e=> actions.deleteUser(props.el.id)}>Delete</button>
 
 
 
