@@ -8,24 +8,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		contactAdded: false,
 
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-
 		currentAgenda: "sophia",
 
 		contacts: [],
 			
+		},
 		actions: {
 
 			//get data from my agenda
@@ -40,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			addContact: async (full_name, email, adress, phone) => {
+			addContact: async (full_name, email, address, phone) => {
 				const opt = {
 
 					headers: {
@@ -54,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							full_name: full_name || "Dave Bradley",
 							email: email || "dave@gmail.com",
 							agenda_slug: "sophia",
-							address: adress || "47568 NW 34ST, 33434 FL, USA",
+							address: address || "47568 NW 34ST, 33434 FL, USA",
 							phone: phone || "7864445566"
 						})
 
@@ -62,7 +49,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				const resp = await fetch("https://playground.4geeks.com/apis/fake/contact/", opt)
 				console.log("resp addContact", resp)
-				if (resp.statusText=== "OK") setStore({ contactAdded: true })
+				if (resp.statusText=== "CREATED") getActions().getData();
 			},
 			deleteUser: (id) => {
 
