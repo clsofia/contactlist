@@ -51,6 +51,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("resp addContact", resp)
 				if (resp.statusText=== "CREATED") getActions().getData();
 			},
+
+			getUser: (id) => {
+				
+					const opt = {
+						method: "GET",
+					}
+					const resp = fetch("https://playground.4geeks.com/apis/fake/contact/" + id, opt)
+					return	resp.then(resposta => resposta.json()).then(data => data)
+					
+			},
+
 			deleteUser: (id) => {
 
 				if (id > -1) {
