@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					},
 
-					method: "POST", // PUT
+					method: "POST",
 					body: JSON.stringify(
 						{
 							full_name: full_name || "Dave Bradley",
@@ -52,6 +52,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (resp.statusText=== "CREATED") getActions().getData();
 			},
 
+			updateContact: async (id,full_name, email, address, phone) => {
+				const opt = {
+
+					headers: {
+						"Content-Type": "application/json"
+
+					},
+
+					method: "PUT",
+					body: JSON.stringify(
+						{
+							full_name: full_name || "Dave Bradley",
+							email: email || "dave@gmail.com",
+							agenda_slug: "sophia",
+							address: address || "47568 NW 34ST, 33434 FL, USA",
+							phone: phone || "7864445566"
+						})
+
+				}
+
+				const resp = await fetch("https://playground.4geeks.com/apis/fake/contact/" + id, opt)
+				console.log("resp addContact", resp)
+				if (resp.statusText=== "CREATED") getActions().getData();
+			},
+
 			getUser: (id) => {
 				
 					const opt = {
@@ -61,6 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return	resp.then(resposta => resposta.json()).then(data => data)
 					
 			},
+
 
 			deleteUser: (id) => {
 
