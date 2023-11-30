@@ -43,13 +43,23 @@ export const EditContact = () => {
 
     return (
 
-        <div className="container w-100">
+        <div className="container-fluid w-100">
 
             <form className="d-flex justify-content-center form-control" onSubmit={e => handleSubmit(e)} >
-                <h1>ID: {theid}</h1>
-                <div className="mb-3 col-6" >
+            <div className="mb-3 col-6" >
+                {!theid?
+               ( 
+                <label for="id" className="form-label"></label>
+               )
+               :
+               (
+                <label for="id" className="form-label"> ID: {theid}</label>
+               )
+            }
+                  <div className="mb-3 col-6" >
                     <label for="InputFullName" className="form-label">Full Name</label>
                     <input type="text" value={full_name} className="form-control" id="InputFullName" name="full_name" required onChange={e => setFullName(e.target.value)} />
+                    </div>
                     <div className="mb-3 col-6">
                         <label for="InputEmail" className="form-label">Email address</label>
                         <input type="email" value={email} className="form-control" id="InputEmail" name="e-mail" required onChange={e => setEmail(e.target.value)} />

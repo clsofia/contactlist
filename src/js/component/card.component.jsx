@@ -52,8 +52,8 @@ return(
   </div>
 </div>
 
-<div className="card container d-flex justify content center" style={{ width: '60rem' }}>
-    <div className="container row no-gutters row d-flex align-items-center px-0">
+<div className="card container-fluid d-flex align-items-center" style={{ width: '60rem' }}>
+    <div className="container row no-gutters row d-flex justify-content-around px-0">
         <div className="col-md-8">
             <div className="contact">
               
